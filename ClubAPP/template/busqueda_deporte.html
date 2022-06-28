@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block tituloPagina %}
+Buscar Curso - Club La Escaloneta
+{% endblock %}
+{% block contenidoPagina %}
+<p>Buscar deporte:
+    <form action="" method="post">
+        {% csrf_token %}
+
+        <!-- <p>Curso: <input type="text" name="nombre" id="" maxlength="30"> </p> -->
+        <input type="number" name="comision" id="" min="0">
+        <input type="text" name="comision" id="" min="0">
+
+        <input type="submit" value="Buscar">
+    </form>
+</p>
+<p>Resultados: </p>
+<ul>
+    {% for resultado in deportes %}
+        <li>{{curso.deport}} [{{ resultado.deporte }}]</li>
+    {% endfor %}
+</ul>
+{% endblock %}

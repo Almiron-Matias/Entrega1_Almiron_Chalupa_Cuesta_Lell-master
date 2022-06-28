@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block tituloPagina %}
+Cursos - Club La Escaloneta
+{% endblock %}
+
+{% block contenidoPagina %}
+
+
+<div class="card text-white bg-secondary my-5 py-4 text-center">
+    <div class="card-body"><h2 class="text-white m-0">Nuestros Cursos son:</h2></div>
+</div>
+<div class="d-grid gap-3 d-sm-flex justify-content-sm-center">
+    {% csrf_token %}
+    <a class="btn btn-primary btn-lg px-4 me-sm-3" href="{% url 'Busqueda_curso' %}">Buscar Curso</a>
+</div>
+<div class="row gx-5 justify-content-center">
+
+        <div class="row gx-5 justify-content-center">
+            <div class="col-lg-10 table-responsive">
+                <table class="table table-theme">
+                    <thead>
+                        <tr>
+                            <th scope="col">Curso</th>
+                            <th scope="col">Deporte</th>
+                        </tr>
+                    </thead>
+                </table>
+                
+            </div>
+        </div>
+        <div class="d-grid gap-3 d-sm-flex justify-content-sm-center">
+            {% csrf_token %}
+            <a class="btn btn-primary btn-lg px-4 me-sm-3" href="{% url 'Nuevo_curso' %}">Crear Curso</a>
+        </div>
+{% endblock %}
