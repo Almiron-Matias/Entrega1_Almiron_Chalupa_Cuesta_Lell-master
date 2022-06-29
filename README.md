@@ -9,6 +9,10 @@ Instalar django
 python -m pip install django
 ```
 
+```shell
+pip install django-crispy-forms
+```
+
 
 Iniciar servidor
 

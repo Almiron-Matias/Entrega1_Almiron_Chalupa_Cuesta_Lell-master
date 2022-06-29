@@ -43,15 +43,14 @@ def base(request):
 def registro(request):
     if request.method == "POST":
 
-        formulario = NuevoCurso(request.POST)
+        formulario = EstudianteFormulario(request.POST)
 
         if formulario.is_valid():
 
             info_registro = formulario.cleaned_data
 
-            registro = Curso(nombre=info_registro["nombre"])
+            registro = Estudiante(nombre=info_registro["nombre"])
             registro.save() # guardamos en la bd
-
             return redirect("Registro")
 
         else:
@@ -62,7 +61,8 @@ def registro(request):
     else: # get y otros
 
         formularioVacio = EstudianteFormulario()
-        return render(request,"registro.html",{"form":formularioVacio,"accion":"Crear Deporte"})
+        return render(request,"registro.html",{"form":formularioVacio,"accion":"Crear Registro"})
+
 
 
 def nuevo_curso(request):
@@ -125,7 +125,8 @@ def busqueda_deporte(request):
         deporte = request.POST["deporte"]
 
         deportes = Deporte.objects.filter(deporte__icontains=deporte)
-        deportes = Deporte.objects.filter( Q(nombre__icontains=deporte) | Q(comision__icontains=deporte) ).values()
+        deportes = Deporte.objects.filter( Q(nombre__icontains=deporte) | Q(curso__icontains=deporte) ).values()
+
         # User.objects.filter(Q(income__gte=5000) | Q(income__isnull=True))
 
         return render(request,"busqueda_deporte.html",{"deportes":deportes})
@@ -141,8 +142,7 @@ def busqueda_curso(request):
         curso = request.POST["curso"]
 
         cursos = Curso.objects.filter(curso__icontains=curso)
-        cursos = Curso.objects.filter( Q(nombre__icontains=curso) | Q(comision__icontains=curso) ).values()
-        # User.objects.filter(Q(income__gte=5000) | Q(income__isnull=True))
+        cursos = Curso.objects.filter( Q(nombre__icontains=curso) | Q(curso__icontains=curso) ).values()
 
         return render(request,"busqueda_curso.html",{"cursos":cursos})
 

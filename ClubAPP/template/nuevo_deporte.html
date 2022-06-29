@@ -4,9 +4,9 @@
 {% block tituloPagina %}
 Creador de Deportes - Club La Escaloneta
 {% endblock %}
-
+{% load crispy_forms_tags %}
 {% block contenidoPagina %}
-
+{% load crispy_forms_tags %}
 <div class="card text-white bg-secondary my-5 py-4 text-center">
     <div class="card-body"><h2 class="text-white m-0">Bienvenido al Creador de Deportes</h2></div>
 </div>
@@ -25,7 +25,7 @@ Creador de Deportes - Club La Escaloneta
 
                         <form action="" method="post">
                             {% csrf_token %}
-
+                            
                             {{ form.as_p }}
 
                             <input type="submit" class="btn btn-primary" value="{{accion}}">
