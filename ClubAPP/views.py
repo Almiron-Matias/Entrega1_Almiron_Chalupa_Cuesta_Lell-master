@@ -122,10 +122,10 @@ def nuevo_deporte(request):
 def busqueda_deporte(request):
     if request.method == "POST":
 
-        deporte = request.POST["deporte"]
+        deporte = request.POST["nombre"]
 
-        deportes = Deporte.objects.filter(deporte__icontains=deporte)
-        deportes = Deporte.objects.filter( Q(nombre__icontains=deporte) | Q(curso__icontains=deporte) ).values()
+        
+        deportes = Deporte.objects.filter( Q(nombre__icontains=deporte) ).values()
 
         # User.objects.filter(Q(income__gte=5000) | Q(income__isnull=True))
 
@@ -139,10 +139,10 @@ def busqueda_deporte(request):
 def busqueda_curso(request):
     if request.method == "POST":
 
-        curso = request.POST["curso"]
+        nombre = request.POST["nombre"]
+        deporte = request.POST["deporte"]
 
-        cursos = Curso.objects.filter(curso__icontains=curso)
-        cursos = Curso.objects.filter( Q(nombre__icontains=curso) | Q(curso__icontains=curso) ).values()
+        cursos = Curso.objects.filter( Q(nombre__icontains=nombre) | Q(deporte__icontains=deporte) ).values()
 
         return render(request,"busqueda_curso.html",{"cursos":cursos})
 

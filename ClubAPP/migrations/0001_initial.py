@@ -17,6 +17,7 @@ class Migration(migrations.Migration):
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('nombre', models.CharField(max_length=30)),
                 ('deporte', models.CharField(max_length=30)),
+                ('fecha', models.DateField()),
             ],
         ),
         migrations.CreateModel(
@@ -25,7 +26,6 @@ class Migration(migrations.Migration):
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('nombre', models.CharField(max_length=30)),
                 ('fecha', models.DateField()),
-                ('hora', models.BooleanField()),
             ],
         ),
         migrations.CreateModel(

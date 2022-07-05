@@ -8,15 +8,12 @@ Buscar Curso - Club La Escaloneta
 <p>Buscar curso:
     <form action="" method="post">
         {% csrf_token %}
-        {{form  |  crispy }}
+        
         <!-- <p>Curso: <input type="text" name="nombre" id="" maxlength="30"> </p> -->
         
         
-        <input type="text" name="curso" id="" min="0">
-        <input type="text" name="curso" id="" min="0">
-        <input type="number" name="curso" id="" min="0">
-        <input type="reset" name="Cancelar" class="btn-btn-secondary">
-
+        <input type="text" name="nombre" id="" maxlength="30">
+        <input type="text" name="deporte" id="" maxlength="30">
         <input type="submit" value="Buscar">
         
     </form>
@@ -24,8 +21,7 @@ Buscar Curso - Club La Escaloneta
 <p>Resultados: </p>
 <ul>
     {% for resultado in cursos %}
-        <li>{{resultado.nombre}} {{ resultado.deporte }} {{ resultado.fecha }}</li>
+        <li>{{resultado.nombre}}-{{ resultado.deporte }}-{{ resultado.fecha }}</li>
     {% endfor %}
 </ul>
 {% endblock %}
-  4  
