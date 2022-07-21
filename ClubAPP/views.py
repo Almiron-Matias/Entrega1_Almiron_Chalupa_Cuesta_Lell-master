@@ -6,9 +6,16 @@ from django.db.models import Q
 
 # Create your views here.
 
+#BASE E INICIO
+
+def base(request):
+    return render(request,"base.html",{})
+
 def inicio(request):
 
     return render(request,"index.html",{})
+
+#PROFESORES Y ESTUDIANTES
 
 def profesores(request):
     return render(request,"profesores.html",{})
@@ -16,17 +23,7 @@ def profesores(request):
 def estudiantes(request):
     return HttpResponse("Vista de estudiantes")
 
-def cursos(request):
-
-    cursos = Curso.objects.all()
-
-    return render(request,"cursos.html",{"cursos":cursos})
-
-def deportes(request):
-    
-    deportes = Deporte.objects.all()
-    
-    return render(request,"deporte.html",{"deportes":deportes})
+#COSAS SECUNDARIAS 
 
 def calendario(request):
     return render(request,"calendario.html",{})
@@ -36,9 +33,6 @@ def contacto(request):
 
 def membresias(request):
     return render(request,"membresia.html",{})
-
-def base(request):
-    return render(request,"base.html",{})
 
 def registro(request):
     if request.method == "POST":
@@ -64,6 +58,37 @@ def registro(request):
         return render(request,"registro.html",{"form":formularioVacio,"accion":"Crear Registro"})
 
 
+#DEPORTES Y CURSOS
+
+def cursos(request):
+    
+    if request.method == "POST":
+
+        search = request.POST["search"]
+
+        if search != "":
+            cursos = Curso.objects.filter( Q(nombre__icontains=search) | Q(deporte__icontains=search) | Q(fecha__icontains=search) ).values()
+
+            return render(request,"deporte.html",{"cursos":cursos, "search":True, "busqueda":search})
+        
+    cursos = Curso.objects.all()
+
+    return render(request,"cursos.html",{"cursos":cursos})
+
+def deportes(request):
+    
+    if request.method == "POST":
+
+        search = request.POST["search"]
+
+        if search != "":
+            deportes = Deporte.objects.filter( Q(nombre__icontains=search) | Q(fecha__icontains=search) ).values()
+
+            return render(request,"deporte.html",{"deportes":deportes, "search":True, "busqueda":search})
+    
+    deportes = Deporte.objects.all()
+    
+    return render(request,"deporte.html",{"deportes":deportes})
 
 def nuevo_curso(request):
     if request.method == "POST":
@@ -90,9 +115,6 @@ def nuevo_curso(request):
 
         return render(request,"nuevo_curso.html",{"form":formularioVacio,"accion":"Crear Curso"})
 
-
-
-
 def nuevo_deporte(request):
     if request.method == "POST":
 
@@ -117,36 +139,36 @@ def nuevo_deporte(request):
         formularioVacio = NuevoDeporte()
 
         return render(request,"nuevo_deporte.html",{"form":formularioVacio,"accion":"Crear Deporte"})
+   
+def eliminar_deporte(request, deporte_id):
 
+    deporte = Deporte.objects.get(id=deporte_id)
+    deporte.delete()
 
-def busqueda_deporte(request):
+    return render(request,"deporte.html")
+
+def editar_deporte(request, curso_id):
+
+    # post
+    
+    curso = Curso.objects.get(id=curso_id)
+
     if request.method == "POST":
 
-        deporte = request.POST["nombre"]
+        formulario = NuevoCurso(request.POST)
 
+        if formulario.is_valid():
+
+            info_curso = formulario.cleaned_data
         
-        deportes = Deporte.objects.filter( Q(nombre__icontains=deporte) ).values()
+            curso.nombre = info_curso["nombre"]
+            curso.comision = info_curso["comision"]
+            curso.save() # guardamos en la bd
+            
+            return redirect("")
 
-        # User.objects.filter(Q(income__gte=5000) | Q(income__isnull=True))
+            
+    formulario = NuevoCurso(initial={"nombre":curso.nombre,"comision":curso.comision})
 
-        return render(request,"busqueda_deporte.html",{"deportes":deportes})
+    return render(request,"ProyectoCoderApp/formulario_curso.html",{"form":formulario,"accion":"Editar Curso"})
 
-    else: # get y otros
-        deportes =  []  #Curso.objects.all()
-        
-        return render(request,"busqueda_deporte.html",{"deportes":deportes})
-
-def busqueda_curso(request):
-    if request.method == "POST":
-
-        nombre = request.POST["nombre"]
-        deporte = request.POST["deporte"]
-
-        cursos = Curso.objects.filter( Q(nombre__icontains=nombre) | Q(deporte__icontains=deporte) ).values()
-
-        return render(request,"busqueda_curso.html",{"cursos":cursos})
-
-    else: # get y otros
-        cursos =  []  #Curso.objects.all()
-        
-        return render(request,"busqueda_curso.html",{"cursos":cursos})

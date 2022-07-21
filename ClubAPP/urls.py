@@ -14,6 +14,7 @@ urlpatterns = [
     path('nuevo_curso/', nuevo_curso, name="Nuevo_curso"),
     path('nuevo_deporte/', nuevo_deporte, name="Nuevo_deporte"),
     path('base/', base),
-    path('buscar_deporte/', busqueda_deporte, name="Busqueda_deporte"),
-    path('buscar_curso/', busqueda_curso, name="Busqueda_curso"),
+    
+    path('eliminar_curso/<deporte_id>/', eliminar_deporte, name="Eliminar_deporte"),
+    path('editar_curso/<deporte_id>/', editar_deporte, name="Editar_deporte"),
 ]
