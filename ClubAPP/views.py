@@ -69,7 +69,7 @@ def cursos(request):
         if search != "":
             cursos = Curso.objects.filter( Q(nombre__icontains=search) | Q(deporte__icontains=search) | Q(fecha__icontains=search) ).values()
 
-            return render(request,"deporte.html",{"cursos":cursos, "search":True, "busqueda":search})
+            return render(request,"cursos.html",{"cursos":cursos, "search":True, "busqueda":search})
         
     cursos = Curso.objects.all()
 
