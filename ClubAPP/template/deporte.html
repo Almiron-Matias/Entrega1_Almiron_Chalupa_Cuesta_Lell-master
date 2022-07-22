@@ -47,8 +47,8 @@ Deportes - Club La Escaloneta
                                 <td>{{deporte.nombre}}</td>
                                 <td>{{deporte.fecha}}</td>
                                 <td>
-                                    <a href="" class="text-primary badge badge-primary text-decoration-none"> <i class="bi bi-pencil-square"></i> Editar</a>
-                                    <a href="" class="text-danger badge badge-danger text-decoration-none"> <i class="bi bi-x-square"></i> Eliminar</a>
+                                    <a href=" " class="text-primary badge badge-primary text-decoration-none"> <i class="bi bi-pencil-square"></i> Editar</a>
+                                    <a href="{% url 'Eliminar_deporte' deporte.id %}" class="text-danger badge badge-danger text-decoration-none"> <i class="bi bi-x-square"></i> Eliminar</a>
                                 </td>
                             </tr>
                         {% endfor %}

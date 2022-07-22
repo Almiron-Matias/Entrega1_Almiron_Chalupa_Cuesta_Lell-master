@@ -145,7 +145,7 @@ def eliminar_deporte(request, deporte_id):
     deporte = Deporte.objects.get(id=deporte_id)
     deporte.delete()
 
-    return render(request,"deporte.html")
+    return redirect("Deportes")
 
 def editar_deporte(request, curso_id):
 

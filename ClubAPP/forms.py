@@ -17,4 +17,4 @@ class NuevoCurso(forms.Form):
 
     nombre = forms.CharField(max_length=30,label="Curso:")
     deporte = forms.CharField(max_length=30,label="Deporte:")
-    fecha = forms.CharField(max_length=30,label="Inserte la fecha (xx/xx):")
+    fecha = forms.CharField(max_length=30,label="Inserte la fecha (año-mes-dia):")
