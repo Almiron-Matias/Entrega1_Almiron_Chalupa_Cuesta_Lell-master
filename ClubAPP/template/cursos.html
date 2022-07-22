@@ -49,8 +49,8 @@ Cursos - Club La Escaloneta
                                 <td>{{curso.deporte}}</td>
                                 <td>{{curso.fecha}}</td>
                                 <td>
-                                    <a href="" class="text-primary badge badge-primary text-decoration-none"> <i class="bi bi-pencil-square"></i> Editar</a>
-                                    <a href="" class="text-danger badge badge-danger text-decoration-none"> <i class="bi bi-x-square"></i> Eliminar</a>
+                                    <a href="{% url 'Editar_curso' curso.id %}" class="text-primary badge badge-primary text-decoration-none"> <i class="bi bi-pencil-square"></i> Editar</a>
+                                    <a href="{% url 'Eliminar_curso' curso.id %}" class="text-danger badge badge-danger text-decoration-none"> <i class="bi bi-x-square"></i> Eliminar</a>
                                 </td>
                             </tr>
                         {% endfor %}

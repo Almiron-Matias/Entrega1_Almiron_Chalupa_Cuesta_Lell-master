@@ -20,6 +20,9 @@ urlpatterns = [
     path('deportes/', deportes, name="Deportes"),
     path('nuevo_curso/', nuevo_curso, name="Nuevo_curso"),
     path('nuevo_deporte/', nuevo_deporte, name="Nuevo_deporte"),
-    path('eliminar_curso/<deporte_id>/', eliminar_deporte, name="Eliminar_deporte"),
-    path('editar_curso/<deporte_id>/', editar_deporte, name="Editar_deporte"),
+    path('eliminar_deporte/<deporte_id>/', eliminar_deporte, name="Eliminar_deporte"),
+    path('editar_deporte/<deporte_id>/', editar_deporte, name="Editar_deporte"),
+    path('eliminar_curso/<curso_id>/', eliminar_curso, name="Eliminar_curso"),
+    path('editar_curso/<curso_id>/', editar_curso, name="Editar_curso"),
+
 ]

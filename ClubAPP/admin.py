@@ -9,13 +9,13 @@ class CursoAdmin(admin.ModelAdmin):
 
 class EstudianteAdmin(admin.ModelAdmin):
 
-    list_display = ('nombre', 'apellido', 'deporte','email', 'numero')
+    list_display = ('nombre', 'apellido', 'deporte','email')
     search_fields = ('nombre', 'deporte')
 
 
 class ProfesorAdmin(admin.ModelAdmin):
 
-    list_display = ('nombre', 'apellido', 'deporte','email', 'numero')
+    list_display = ('nombre', 'apellido', 'deporte','email')
     search_fields = ('nombre', 'deporte')
     
 class DeporteAdmin(admin.ModelAdmin):

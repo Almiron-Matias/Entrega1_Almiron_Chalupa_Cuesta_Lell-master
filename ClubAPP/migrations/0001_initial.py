@@ -17,7 +17,7 @@ class Migration(migrations.Migration):
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('nombre', models.CharField(max_length=30)),
                 ('deporte', models.CharField(max_length=30)),
-                ('fecha', models.DateField()),
+                ('fecha', models.DateField()),                
             ],
         ),
         migrations.CreateModel(
@@ -44,7 +44,7 @@ class Migration(migrations.Migration):
                 ('nombre', models.CharField(max_length=30)),
                 ('apellido', models.CharField(max_length=30)),
                 ('email', models.EmailField(blank=True, max_length=254, null=True)),
-                ('deporte', models.CharField(max_length=30)),
+                ('deporte', models.CharField(max_length=30)),                
             ],
         ),
     ]

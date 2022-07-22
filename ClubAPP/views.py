@@ -3,6 +3,9 @@ from django.http import HttpResponse
 from .models import *
 from .forms import *
 from django.db.models import Q
+from django.views.generic import ListView
+from django.views.generic.detail import DetailView
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
 
 # Create your views here.
 
@@ -147,9 +150,39 @@ def eliminar_deporte(request, deporte_id):
 
     return redirect("Deportes")
 
-def editar_deporte(request, curso_id):
+def editar_deporte(request, deporte_id):
 
     # post
+    
+    deporte = Deporte.objects.get(id=deporte_id)
+
+    if request.method == "POST":
+
+        formulario = NuevoDeporte(request.POST)
+
+        if formulario.is_valid():
+
+            info_deporte = formulario.cleaned_data
+        
+            deporte.nombre = info_deporte["nombre"]
+            deporte.fecha = info_deporte["fecha"]
+            deporte.save() 
+            
+            return redirect("Deportes")
+
+            
+    formulario = NuevoDeporte(initial={"nombre":deporte.nombre,"fecha":deporte.fecha})
+
+    return render(request,"nuevo_deporte.html",{"form":formulario,"accion":"Editar Deporte"})
+
+def eliminar_curso(request, curso_id):
+
+    curso = Curso.objects.get(id=curso_id)
+    curso.delete()
+
+    return redirect("Cursos")
+
+def editar_curso(request, curso_id):
     
     curso = Curso.objects.get(id=curso_id)
 
@@ -162,13 +195,13 @@ def editar_deporte(request, curso_id):
             info_curso = formulario.cleaned_data
         
             curso.nombre = info_curso["nombre"]
-            curso.comision = info_curso["comision"]
+            curso.deporte = info_curso["deporte"]
+            curso.fecha = info_curso["fecha"]
             curso.save() # guardamos en la bd
             
-            return redirect("")
+            return redirect("Cursos")
 
             
-    formulario = NuevoCurso(initial={"nombre":curso.nombre,"comision":curso.comision})
+    formulario = NuevoCurso(initial={"nombre":curso.nombre,"deporte":curso.deporte,"fecha":curso.fecha})
 
-    return render(request,"ProyectoCoderApp/formulario_curso.html",{"form":formulario,"accion":"Editar Curso"})
-
+    return render(request,"nuevo_curso.html",{"form":formulario,"accion":"Editar Curso"})
