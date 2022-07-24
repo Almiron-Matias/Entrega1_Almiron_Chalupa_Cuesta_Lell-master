@@ -5,15 +5,17 @@ urlpatterns = [
     # URLS Base
     path('base/', base),
     path('', inicio, name="Inicio"),
+    path('entrada/', login_req, name="Entrada"), 
+    path('registro/', register_req, name="Registro"),
+    path('salida/', logout_req, name="Salida"),
     
     # URLS Barra del Navegador
     path('profesores/', profesores, name="Profesores"),
-    path('calendario/', calendario, name="Calendario"),
+    #path('calendario/', calendario, name="Calendario"),
     path('contacto/', contacto, name="Contacto"),
     
     # URLS Secundarias
     path('membresias/', membresias, name="Membresias"),
-    path('registro/', registro, name="Registro"),
 
     # URLS Cursos y Deportes
     path('cursos/', cursos, name="Cursos"),

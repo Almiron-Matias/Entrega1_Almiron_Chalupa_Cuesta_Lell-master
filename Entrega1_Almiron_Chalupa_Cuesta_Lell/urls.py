@@ -19,6 +19,6 @@ from ClubAPP.views import *
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('ClubAPP/', include('ClubAPP.urls')),
+    path('', include('ClubAPP.urls')),
 
 ]

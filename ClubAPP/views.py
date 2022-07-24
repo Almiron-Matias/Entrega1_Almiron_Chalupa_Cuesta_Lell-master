@@ -3,9 +3,10 @@ from django.http import HttpResponse
 from .models import *
 from .forms import *
 from django.db.models import Q
-from django.views.generic import ListView
-from django.views.generic.detail import DetailView
-from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
+from django.contrib.auth import login, logout, authenticate
+from django.contrib.auth.decorators import login_required
+from django.contrib.admin.views.decorators import staff_member_required
 
 # Create your views here.
 
@@ -25,6 +26,63 @@ def profesores(request):
 
 def estudiantes(request):
     return HttpResponse("Vista de estudiantes")
+
+#LOGIN Y LOGOUT
+
+def login_req (request):
+    
+    if request.method == "POST":
+
+        form = AuthenticationForm(request, data=request.POST)
+
+        if form.is_valid():
+
+            username = form.cleaned_data.get('username')
+            password = form.cleaned_data.get('password')
+            user = authenticate(username=username, password=password)
+
+            if user is not None:
+                login(request, user)
+                return redirect("Inicio")
+            else:
+                return redirect("Entrada")
+        else:
+            return redirect("Entrada")
+    
+    form = AuthenticationForm()
+
+    return render(request,"entrada.html",{"form":form})
+       
+def register_req(request):
+
+    if request.method == "POST":
+        
+        
+        form = UserCreationForm(request.POST)
+
+        if form.is_valid():
+
+            username = form.cleaned_data.get('username')
+            password = form.cleaned_data.get('password1') 
+
+            form.save()
+            
+            user = authenticate(username=username, password=password)
+
+            if user is not None:
+                login(request, user)
+                return redirect("Inicio")
+            else:
+                return redirect("Entrada")
+        
+    form = UserCreationForm(request.POST)
+
+    return render(request,"registro.html",{"form":form})
+
+def logout_req(request):
+    logout(request)
+    return redirect("Inicio")
+
 
 #COSAS SECUNDARIAS 
 
@@ -93,6 +151,7 @@ def deportes(request):
     
     return render(request,"deporte.html",{"deportes":deportes})
 
+@staff_member_required
 def nuevo_curso(request):
     if request.method == "POST":
 
@@ -118,6 +177,7 @@ def nuevo_curso(request):
 
         return render(request,"nuevo_curso.html",{"form":formularioVacio,"accion":"Crear Curso"})
 
+@staff_member_required
 def nuevo_deporte(request):
     if request.method == "POST":
 
@@ -142,7 +202,8 @@ def nuevo_deporte(request):
         formularioVacio = NuevoDeporte()
 
         return render(request,"nuevo_deporte.html",{"form":formularioVacio,"accion":"Crear Deporte"})
-   
+
+@staff_member_required
 def eliminar_deporte(request, deporte_id):
 
     deporte = Deporte.objects.get(id=deporte_id)
@@ -150,6 +211,7 @@ def eliminar_deporte(request, deporte_id):
 
     return redirect("Deportes")
 
+@staff_member_required
 def editar_deporte(request, deporte_id):
 
     # post
@@ -175,6 +237,7 @@ def editar_deporte(request, deporte_id):
 
     return render(request,"nuevo_deporte.html",{"form":formulario,"accion":"Editar Deporte"})
 
+@staff_member_required
 def eliminar_curso(request, curso_id):
 
     curso = Curso.objects.get(id=curso_id)
@@ -182,6 +245,7 @@ def eliminar_curso(request, curso_id):
 
     return redirect("Cursos")
 
+@staff_member_required
 def editar_curso(request, curso_id):
     
     curso = Curso.objects.get(id=curso_id)
@@ -205,3 +269,5 @@ def editar_curso(request, curso_id):
     formulario = NuevoCurso(initial={"nombre":curso.nombre,"deporte":curso.deporte,"fecha":curso.fecha})
 
     return render(request,"nuevo_curso.html",{"form":formulario,"accion":"Editar Curso"})
+
+

@@ -20,11 +20,10 @@ Inicio - Club La Escaloneta
                     <a class="btn btn-primary" href="{% url 'Cursos' %}">Nuestros Cursos</a>
                 </div>
             </div>
-
-             <!-- registro-->
-            <div class="card text-white bg-secondary my-5 py-4 text-center">
-                <div class="card-body"><h3 class="text-white m-0">¡Registrate para unirte a las actividades!</h3></div>
-            </div>
+            {% if not user.is_authenticated %}
+                <div class="card text-white bg-secondary my-5 py-4 text-center">
+                    <div class="card-body"><h3 class="text-white m-0">¡Registrate para unirte a las actividades!</h3></div>
+                </div>
             
                 <div class="container px-5">
                     <div class="row gx-5 justify-content-center">
@@ -41,41 +40,41 @@ Inicio - Club La Escaloneta
                     </div>
                 </div>
 
-
-            <!-- Call to Action-->
-            <div class="card text-white bg-secondary my-5 py-4 text-center">
-                <div class="card-body"><h2 class="text-white m-0">!HASTE MIEMBRO, UNETE A ESTE GRAN FAMILIA¡</h2></div>
-            </div>
+            {% else %}
+                <!-- Call to Action-->
+                <div class="card text-white bg-secondary my-5 py-4 text-center">
+                    <div class="card-body"><h2 class="text-white m-0">!HASTE MIEMBRO, UNETE A ESTE GRAN FAMILIA¡</h2></div>
+                </div>
             <!-- Content Row-->
-            <div class="row gx-4 gx-lg-5">
-                <div class="col-md-4 mb-5">
-                    <div class="card h-100">
-                        <div class="card-body">
-                            <h2 class="card-title">Membresia Bronce</h2>
-                            <p class="card-text">Con acceso a futbol y natacion gratis, con 50% en golf y el gimnasio un mes gratis.</p>
+                <div class="row gx-4 gx-lg-5">
+                    <div class="col-md-4 mb-5">
+                        <div class="card h-100">
+                            <div class="card-body">
+                                <h2 class="card-title">Membresia Bronce</h2>
+                                <p class="card-text">Con acceso a futbol y natacion gratis, con 50% en golf y el gimnasio un mes gratis.</p>
+                            </div>
+                            <div class="card-footer"><a class="btn btn-primary btn-sm" href="{% url 'Membresias' %}">¡Hacerte Miembro!</a></div>
                         </div>
+                    </div>
+                    <div class="col-md-4 mb-5">
+                        <div class="card h-100">
+                            <div class="card-body">
+                                <h2 class="card-title">Membresia Plata</h2>
+                                <p class="card-text">Con acceso a futbol, natacion y golf gratis, equipamiento incluido y ademas por 12 meses 50% en el gimanasio</p>
+                            </div>
                         <div class="card-footer"><a class="btn btn-primary btn-sm" href="{% url 'Membresias' %}">¡Hacerte Miembro!</a></div>
                     </div>
-                </div>
-                <div class="col-md-4 mb-5">
-                    <div class="card h-100">
-                        <div class="card-body">
-                            <h2 class="card-title">Membresia Plata</h2>
-                            <p class="card-text">Con acceso a futbol, natacion y golf gratis, equipamiento incluido y ademas por 12 meses 50% en el gimanasio</p>
+                    </div>
+                    <div class="col-md-4 mb-5">
+                        <div class="card h-100">
+                            <div class="card-body">
+                                <h2 class="card-title">Membresia Oro</h2>
+                                <p class="card-text">Todos los deportes gratis y incluyendo su equipamiento, codigo de amigo de descuento para compartir!</p>
+                            </div>
+                            <div class="card-footer"><a class="btn btn-primary btn-sm" href="{% url 'Membresias' %}">¡Hacerte Miembro!</a></div>
                         </div>
-                        <div class="card-footer"><a class="btn btn-primary btn-sm" href="{% url 'Membresias' %}">¡Hacerte Miembro!</a></div>
                     </div>
                 </div>
-                <div class="col-md-4 mb-5">
-                    <div class="card h-100">
-                        <div class="card-body">
-                            <h2 class="card-title">Membresia Oro</h2>
-                            <p class="card-text">Todos los deportes gratis y incluyendo su equipamiento, codigo de amigo de descuento para compartir!</p>
-                        </div>
-                        <div class="card-footer"><a class="btn btn-primary btn-sm" href="{% url 'Membresias' %}">¡Hacerte Miembro!</a></div>
-                    </div>
-                </div>
-            </div>
+            {% endif %}
         </div>
-
 {% endblock %}

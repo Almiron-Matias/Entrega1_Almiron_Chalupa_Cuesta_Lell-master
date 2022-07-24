@@ -16,7 +16,11 @@ Cursos - Club La Escaloneta
                     {% csrf_token %}
                     <input class="flex-grow-0 form-control mr-sm-2" type="search" name="search" placeholder="Buscar por Cursos/Deporte/Dia" aria-label="Search">
                     <button class="btn btn-outline-success text-nowrap ms-3 my-2 my-sm-0" type="submit"> <i class="bi bi-search"></i> Buscar</button>
-                    <a class="btn btn-outline-success text-nowrap ms-3 my-2 my-sm-0" href="{% url 'Nuevo_curso' %}"> <i class="bi bi-plus-lg"></i> Crear Cursos</a>
+                    {% if user.is_authenticated %}
+                        {% if user.is_staff %}
+                            <a class="btn btn-outline-success text-nowrap ms-3 my-2 my-sm-0" href="{% url 'Nuevo_curso' %}"> <i class="bi bi-plus-lg"></i> Crear Cursos</a>
+                        {% endif %}
+                    {% endif %}
                 </form>
             </div>
         </div>
@@ -38,7 +42,11 @@ Cursos - Club La Escaloneta
                             <th scope="col">Cursos</th>
                             <th scope="col">Deporte</th>
                             <th scope="col">Fecha</th>
-                            <th scope="col">Acciones</th>
+                            {% if user.is_authenticated %}
+                                {% if user.is_staff %}
+                                    <th scope="col">Acciones</th>
+                                {% endif %}
+                            {% endif %}
                         </tr>
                     </thead>
                     <tbody>
@@ -48,16 +56,79 @@ Cursos - Club La Escaloneta
                                 <td>{{curso.nombre}}</td>
                                 <td>{{curso.deporte}}</td>
                                 <td>{{curso.fecha}}</td>
-                                <td>
-                                    <a href="{% url 'Editar_curso' curso.id %}" class="text-primary badge badge-primary text-decoration-none"> <i class="bi bi-pencil-square"></i> Editar</a>
-                                    <a href="{% url 'Eliminar_curso' curso.id %}" class="text-danger badge badge-danger text-decoration-none"> <i class="bi bi-x-square"></i> Eliminar</a>
-                                </td>
+                                {% if user.is_authenticated %}
+                                    {% if user.is_staff %}
+                                    <td>
+                                        <a href="{% url 'Editar_curso' curso.id %}" class="text-primary badge badge-primary text-decoration-none"> <i class="bi bi-pencil-square"></i> Editar</a>
+                                        <a href="{% url 'Eliminar_curso' curso.id %}" class="text-danger badge badge-danger text-decoration-none"> <i class="bi bi-x-square"></i> Eliminar</a>
+                                    </td>
+                                    {% endif %}
+                                {% endif %}
                             </tr>
                         {% endfor %}
                     </tbody>
                 </table>
             </div>
         </div>
+        <div>
+            {% if not user.is_authenticated %}
+                <div class="card text-white bg-secondary my-5 py-4 text-center">
+                    <div class="card-body"><h3 class="text-white m-0">¡Registrate para unirte a las actividades!</h3></div>
+                </div>
+            
+                <div class="container px-5">
+                    <div class="row gx-5 justify-content-center">
+                        <div class="col-lg-6">
+                            <div class="text-center my-5">
+                                <h1 class="display-5 fw-bolder text-black mb-2">VENTAJAS DE CONVERTIRTE EN UN USUARIO</h1>
+                                <p>Aprender,divertirte y ejercitarte en el mejor club de Buenos Aires.</p>
+                                <div class="d-grid gap-3 d-sm-flex justify-content-sm-center">
+                                    {% csrf_token %}
+                                    <a class="btn btn-primary btn-lg px-4 me-sm-3" href="{% url 'Registro' %}">¡Registrate!</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            {% else %}
+                <!-- Call to Action-->
+                <div class="card text-white bg-secondary my-5 py-4 text-center">
+                    <div class="card-body"><h2 class="text-white m-0">!HASTE MIEMBRO, UNETE A ESTE GRAN FAMILIA¡</h2></div>
+                </div>
+            <!-- Content Row-->
+                <div class="row gx-4 gx-lg-5">
+                    <div class="col-md-4 mb-5">
+                        <div class="card h-100">
+                            <div class="card-body">
+                                <h2 class="card-title">Membresia Bronce</h2>
+                                <p class="card-text">Con acceso a futbol y natacion gratis, con 50% en golf y el gimnasio un mes gratis.</p>
+                            </div>
+                            <div class="card-footer"><a class="btn btn-primary btn-sm" href="{% url 'Membresias' %}">¡Hacerte Miembro!</a></div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-5">
+                        <div class="card h-100">
+                            <div class="card-body">
+                                <h2 class="card-title">Membresia Plata</h2>
+                                <p class="card-text">Con acceso a futbol, natacion y golf gratis, equipamiento incluido y ademas por 12 meses 50% en el gimanasio</p>
+                            </div>
+                        <div class="card-footer"><a class="btn btn-primary btn-sm" href="{% url 'Membresias' %}">¡Hacerte Miembro!</a></div>
+                    </div>
+                    </div>
+                    <div class="col-md-4 mb-5">
+                        <div class="card h-100">
+                            <div class="card-body">
+                                <h2 class="card-title">Membresia Oro</h2>
+                                <p class="card-text">Todos los deportes gratis y incluyendo su equipamiento, codigo de amigo de descuento para compartir!</p>
+                            </div>
+                            <div class="card-footer"><a class="btn btn-primary btn-sm" href="{% url 'Membresias' %}">¡Hacerte Miembro!</a></div>
+                        </div>
+                    </div>
+                </div>
+            {% endif %}
+        </div>
     </div>
 </section>
+
 {% endblock %}
