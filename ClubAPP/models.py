@@ -28,3 +28,4 @@ class Deporte(models.Model):
 
     nombre = models.CharField(max_length=30)
     fecha = models.DateField(max_length=30)
+

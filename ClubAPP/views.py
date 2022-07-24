@@ -29,8 +29,25 @@ def estudiantes(request):
 
 def usuarios(request):
     
-    return render(request,"usuarios.html")
+    if request.method == "POST":
 
+        search = request.POST["search"]
+
+        if search != "":
+            usuarios  = User.objects.filter( Q(nombre__icontains=search) | Q(apellido__icontains=search) | Q(email__icontains=search) | Q(tipo__icontains=search) ).values()
+
+            return render(request,"usuarios.html",{"usuarios":usuarios , "search":True, "busqueda":search})
+    
+    usuarios = User.objects.all()
+    
+    return render(request,"usuarios.html",{"usuarios":usuarios})
+
+def selector(request):
+   return render(request,"selector.html")  
+
+def eliminardor(request):
+    return render(request,"eliminador.html")   
+ 
 #LOGIN Y LOGOUT
 
 def login_req (request):

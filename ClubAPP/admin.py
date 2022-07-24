@@ -1,5 +1,6 @@
 from django.contrib import admin
 from .models import *
+from django.contrib.auth.models import User
 
 class CursoAdmin(admin.ModelAdmin):
 
@@ -22,8 +23,6 @@ class DeporteAdmin(admin.ModelAdmin):
 
     list_display = ('nombre','fecha')
     search_fields = ('nombre','fecha')
-
-    
 
 admin.site.register(Curso, CursoAdmin)
 admin.site.register(Estudiante, EstudianteAdmin)

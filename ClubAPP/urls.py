@@ -15,6 +15,8 @@ urlpatterns = [
     path('contacto/', contacto, name="Contacto"),
     path('inscripcion/',inscripcion, name="Inscripcion"),
     path('usuarios/',usuarios, name="Usuarios"),
+    path('selector/',selector,name="Selector"),
+    path('eliminador/',eliminardor,name="Eliminador"),
     
     # URLS Secundarias
     path('membresias/', membresias, name="Membresias"),

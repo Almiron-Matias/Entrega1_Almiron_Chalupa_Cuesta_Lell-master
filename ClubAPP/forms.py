@@ -32,3 +32,8 @@ class UserRegisterForm(UserCreationForm):
         fields = ['username','nombre','apellido', 'email', 'password1', 'password2']
 
         #help_texts = {k:"" for k in fields}
+
+roles = [("estudiante", "Estudiante"), ("profesor", "Profesor")]
+class Selector(UserCreationForm):
+
+    roles = forms.MultipleChoiceField(choices=roles, label="Roles", widget=forms.Select(choices=roles))
