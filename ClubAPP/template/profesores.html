@@ -7,7 +7,7 @@ Profesores - Club La Escaloneta
 
 {% block contenidoPagina %}
 
-<div class="card text-white bg-secondary my-5 py-4 text-center">
+<div class="container card text-white bg-secondary my-5 py-4 text-center">
     <div class="card-body"><h2 class="text-white m-0">Profesores Destacados</h2></div>
 </div>
 <div class="album py-5 bg-light">
@@ -15,7 +15,8 @@ Profesores - Club La Escaloneta
      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
         <div class="col">
           <div class="card shadow-sm">
-            <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="#55595c"/><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">FOTO PROFESORES</text></svg>
+            <img class="bd-placeholder-img card-img-top" width="100%" height="225" aria-label="Placeholder: Thumbnail" focusable="false" src="https://www.texasfamilyfitness.com/hs-fs/hubfs/personal%20trainer%20featured.jpg?width=600&name=personal%20trainer%20featured.jpg">
+              <span class="text-muted">Hernando Suarez</span>
             <div class="card-body">
               <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
             </div>
@@ -23,7 +24,8 @@ Profesores - Club La Escaloneta
         </div>
         <div class="col">
           <div class="card shadow-sm">
-            <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="#55595c"/><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">FOTO PROFESORES</text></svg>
+            <img class="bd-placeholder-img card-img-top" width="100%" height="225" aria-label="Placeholder: Thumbnail" focusable="false" src="https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/mh-trainer-2-1533576998.png">
+              <span class="text-muted">Lionel L´ Jhonson</span>
             <div class="card-body">
               <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
             </div>
@@ -31,13 +33,70 @@ Profesores - Club La Escaloneta
         </div>
         <div class="col">
           <div class="card shadow-sm">
-            <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="#55595c"/><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">FOTO PROFESORES</text></svg>
+            <img class="bd-placeholder-img card-img-top" width="100%" height="225" aria-label="Placeholder: Thumbnail" focusable="false" src="https://media.istockphoto.com/photos/fitness-trainer-at-gym-picture-id1072395722?k=20&m=1072395722&s=612x612&w=0&h=zhxJbv4VDqOqt5JwXI7CgZ0CXfXtagmdtF2mSITW0eo=">
+              <span class="text-muted">Flavio Chopingo</span>
             <div class="card-body">
               <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
             </div>
           </div>
         </div>
      </div>   
+    </div>
+    <div>
+      {% if not user.is_authenticated %}
+          <div class="container card text-white bg-secondary my-5 py-4 text-center">
+              <div class="card-body"><h3 class="text-white m-0">¡Registrate para unirte a las actividades!</h3></div>
+          </div>
+      
+          <div class="container px-5">
+              <div class="row gx-5 justify-content-center">
+                  <div class="col-lg-6">
+                      <div class="text-center my-5">
+                          <h1 class="display-5 fw-bolder text-black mb-2">VENTAJAS DE CONVERTIRTE EN UN USUARIO</h1>
+                          <p>Aprender,divertirte y ejercitarte en el mejor club de Buenos Aires.</p>
+                          <div class="d-grid gap-3 d-sm-flex justify-content-sm-center">
+                              {% csrf_token %}
+                              <a class="btn btn-primary btn-lg px-4 me-sm-3" href="{% url 'Registro' %}">¡Registrate!</a>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+
+      {% else %}
+          <div class="container card text-white bg-secondary my-5 py-4 text-center">
+              <div class="card-body"><h2 class="text-white m-0">!HASTE MIEMBRO, UNETE A ESTE GRAN FAMILIA¡</h2></div>
+          </div>
+          <div class="container row gx-4 gx-lg-5">
+              <div class="col-md-4 mb-5">
+                  <div class="card h-100">
+                      <div class="card-body">
+                          <h2 class="card-title">Membresia Bronce</h2>
+                          <p class="card-text">Con acceso a futbol y natacion gratis, con 50% en golf y el gimnasio un mes gratis.</p>
+                      </div>
+                      <div class="card-footer"><a class="btn btn-primary btn-sm" href="{% url 'Membresias' %}">¡Hacerte Miembro!</a></div>
+                  </div>
+              </div>
+              <div class="col-md-4 mb-5">
+                  <div class="card h-100">
+                      <div class="card-body">
+                          <h2 class="card-title">Membresia Plata</h2>
+                          <p class="card-text">Con acceso a futbol, natacion y golf gratis, equipamiento incluido y ademas por 12 meses 50% en el gimanasio</p>
+                      </div>
+                  <div class="card-footer"><a class="btn btn-primary btn-sm" href="{% url 'Membresias' %}">¡Hacerte Miembro!</a></div>
+              </div>
+              </div>
+              <div class="col-md-4 mb-5">
+                  <div class="card h-100">
+                      <div class="card-body">
+                          <h2 class="card-title">Membresia Oro</h2>
+                          <p class="card-text">Todos los deportes gratis y incluyendo su equipamiento, codigo de amigo de descuento para compartir!</p>
+                      </div>
+                      <div class="card-footer"><a class="btn btn-primary btn-sm" href="{% url 'Membresias' %}">¡Hacerte Miembro!</a></div>
+                  </div>
+              </div>
+          </div>
+      {% endif %}
     </div>
   {% if user.is_authenticated %}
     {% if user.is_staff %}

@@ -118,6 +118,8 @@ def registro(request):
         formularioVacio = EstudianteFormulario()
         return render(request,"registro.html",{"form":formularioVacio,"accion":"Crear Registro"})
 
+def inscripcion(request):
+    return render(request,"inscripcion.html",{})
 
 #DEPORTES Y CURSOS
 

@@ -42,11 +42,7 @@ Cursos - Club La Escaloneta
                             <th scope="col">Cursos</th>
                             <th scope="col">Deporte</th>
                             <th scope="col">Fecha</th>
-                            {% if user.is_authenticated %}
-                                {% if user.is_staff %}
-                                    <th scope="col">Acciones</th>
-                                {% endif %}
-                            {% endif %}
+                            <th scope="col">Acciones</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -56,14 +52,15 @@ Cursos - Club La Escaloneta
                                 <td>{{curso.nombre}}</td>
                                 <td>{{curso.deporte}}</td>
                                 <td>{{curso.fecha}}</td>
-                                {% if user.is_authenticated %}
-                                    {% if user.is_staff %}
-                                    <td>
-                                        <a href="{% url 'Editar_curso' curso.id %}" class="text-primary badge badge-primary text-decoration-none"> <i class="bi bi-pencil-square"></i> Editar</a>
-                                        <a href="{% url 'Eliminar_curso' curso.id %}" class="text-danger badge badge-danger text-decoration-none"> <i class="bi bi-x-square"></i> Eliminar</a>
-                                    </td>
+                                <td>
+                                    <a href="{% url 'Inscripcion' %}" class="text-primary badge badge-primary text-decoration-none"> <i class="bi bi-pencil-square"></i>Inscribete</a>
+                                    {% if user.is_authenticated %}
+                                        {% if user.is_staff %}
+                                            <a href="{% url 'Editar_curso' curso.id %}" class="text-primary badge badge-primary text-decoration-none"> <i class="bi bi-pencil-square"></i> Editar</a>
+                                            <a href="{% url 'Eliminar_curso' curso.id %}" class="text-danger badge badge-danger text-decoration-none"> <i class="bi bi-x-square"></i> Eliminar</a>
+                                        {% endif %}
                                     {% endif %}
-                                {% endif %}
+                                </td>
                             </tr>
                         {% endfor %}
                     </tbody>

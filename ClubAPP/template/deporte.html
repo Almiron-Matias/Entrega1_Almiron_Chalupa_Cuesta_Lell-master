@@ -7,33 +7,36 @@ Deportes - Club La Escaloneta
 
 {% block contenidoPagina %}
 <section class="bg-light py-5">
-    <div class="card text-white bg-secondary my-5 py-4 text-center">
-        <div class="card-body"><h2 class="text-white m-0">Deportes Destacados</h2></div>
-    </div>
     <div class="album py-5 bg-light">
         <div class="container">
          <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
             <div class="col">
               <div class="card shadow-sm">
-                <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="#55595c"/></svg>
+                <img class="bd-placeholder-img card-img-top" width="100%" height="225" aria-label="Placeholder: Thumbnail" focusable="false" src="https://imagenes.elpais.com/resizer/_TbMK6TwGNfD-0xVj_fZdC4JUkE=/1960x1103/cloudfront-eu-central-1.images.arcpublishing.com/prisa/SU7EFDELFA7VVUEMTQNS26S4HQ.jpg">
+                    <span class="text-muted">FUTBALL</span>
                 <div class="card-body">
                   <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                  <a class="btn btn-primary btn-sm" href="{% url 'Inscripcion' %}">¡INSCRIBETE!</a>
                 </div>
               </div>
             </div>
             <div class="col">
               <div class="card shadow-sm">
-                <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="#55595c"/></svg>
+                <img class="bd-placeholder-img card-img-top" width="100%" height="225" aria-label="Placeholder: Thumbnail" focusable="false" src="https://media.lacapital.com.ar/p/c45f006abf8b456c5f6a8c8cf6e78fb6/adjuntos/205/imagenes/030/551/0030551570/luciano-vicentin-voley-1jpg.jpg">
+                    <span class="text-muted">VOLEY</span>
                 <div class="card-body">
                   <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                  <a class="btn btn-primary btn-sm" href="{% url 'Inscripcion' %}">¡INSCRIBETE!</a>
                 </div>
               </div>
             </div>
             <div class="col">
               <div class="card shadow-sm">
-                <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="#55595c"/></svg>
+                <img class="bd-placeholder-img card-img-top" width="100%" height="225" aria-label="Placeholder: Thumbnail" focusable="false" src="https://concepto.de/wp-content/uploads/2022/04/handball-balonmano-e1649636172355-800x400.jpg">
+                    <span class="text-muted">HANDBALL</span>
                 <div class="card-body">
-                  <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                    <a class="btn btn-primary btn-sm" href="{% url 'Inscripcion' %}">¡INSCRIBETE!</a>
                 </div>
               </div>
             </div>
@@ -74,11 +77,7 @@ Deportes - Club La Escaloneta
                             <th scope="col">#</th>
                             <th scope="col">Deporte</th>
                             <th scope="col">Fecha</th>
-                            {% if user.is_authenticated %}
-                                {% if user.is_staff %}
-                                    <th scope="col">Acciones</th>
-                                {% endif %}
-                            {% endif %}
+                            <th scope="col">Acciones</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -87,14 +86,15 @@ Deportes - Club La Escaloneta
                                 <th scope="row">{{forloop.counter}}</th>
                                 <td>{{deporte.nombre}}</td>
                                 <td>{{deporte.fecha}}</td>
-                                {% if user.is_authenticated %}
-                                    {% if user.is_staff %}
-                                    <td>
-                                        <a href="{% url 'Editar_deporte' deporte.id %} " class="text-primary badge badge-primary text-decoration-none"> <i class="bi bi-pencil-square"></i> Editar</a>
-                                        <a href="{% url 'Eliminar_deporte' deporte.id %}" class="text-danger badge badge-danger text-decoration-none"> <i class="bi bi-x-square"></i> Eliminar</a>
-                                    </td>
+                                <td>
+                                    <a href="{% url 'Inscripcion' %}" class="text-primary badge badge-primary text-decoration-none"> <i class="bi bi-pencil-square"></i>Inscribete</a>
+                                    {% if user.is_authenticated %}
+                                        {% if user.is_staff %}
+                                            <a href="{% url 'Editar_deporte' deporte.id %}" class="text-primary badge badge-primary text-decoration-none"> <i class="bi bi-pencil-square"></i> Editar</a>
+                                            <a href="{% url 'Eliminar_deporte' deporte.id %}" class="text-danger badge badge-danger text-decoration-none"> <i class="bi bi-x-square"></i> Eliminar</a>
+                                        {% endif %}
                                     {% endif %}
-                                {% endif %}
+                                </td>
                             </tr>
                         {% endfor %}
                     </tbody>

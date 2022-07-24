@@ -13,6 +13,7 @@ urlpatterns = [
     path('profesores/', profesores, name="Profesores"),
     #path('calendario/', calendario, name="Calendario"),
     path('contacto/', contacto, name="Contacto"),
+    path('inscripcion/',inscripcion, name="Inscripcion"),
     
     # URLS Secundarias
     path('membresias/', membresias, name="Membresias"),
