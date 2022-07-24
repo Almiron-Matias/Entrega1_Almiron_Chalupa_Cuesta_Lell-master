@@ -11,9 +11,10 @@ urlpatterns = [
     
     # URLS Barra del Navegador
     path('profesores/', profesores, name="Profesores"),
-    #path('calendario/', calendario, name="Calendario"),
+    path('calendario/', calendario, name="Calendario"),
     path('contacto/', contacto, name="Contacto"),
     path('inscripcion/',inscripcion, name="Inscripcion"),
+    path('usuarios/',usuarios, name="Usuarios"),
     
     # URLS Secundarias
     path('membresias/', membresias, name="Membresias"),

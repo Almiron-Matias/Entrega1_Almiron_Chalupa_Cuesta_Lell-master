@@ -27,6 +27,10 @@ def profesores(request):
 def estudiantes(request):
     return HttpResponse("Vista de estudiantes")
 
+def usuarios(request):
+    
+    return render(request,"usuarios.html")
+
 #LOGIN Y LOGOUT
 
 def login_req (request):
@@ -58,7 +62,7 @@ def register_req(request):
     if request.method == "POST":
         
         
-        form = UserCreationForm(request.POST)
+        form = UserRegisterForm(request.POST)
 
         if form.is_valid():
 
@@ -75,7 +79,7 @@ def register_req(request):
             else:
                 return redirect("Entrada")
         
-    form = UserCreationForm(request.POST)
+    form = UserRegisterForm(request.POST)
 
     return render(request,"registro.html",{"form":form})
 
@@ -94,29 +98,6 @@ def contacto(request):
 
 def membresias(request):
     return render(request,"membresia.html",{})
-
-def registro(request):
-    if request.method == "POST":
-
-        formulario = EstudianteFormulario(request.POST)
-
-        if formulario.is_valid():
-
-            info_registro = formulario.cleaned_data
-
-            registro = Estudiante(nombre=info_registro["nombre"])
-            registro.save() # guardamos en la bd
-            return redirect("Registro")
-
-        else:
-
-            return render(request,"formulario_curso.html",{"form":formulario,"accion":"Crear registro"})
-
-
-    else: # get y otros
-
-        formularioVacio = EstudianteFormulario()
-        return render(request,"registro.html",{"form":formularioVacio,"accion":"Crear Registro"})
 
 def inscripcion(request):
     return render(request,"inscripcion.html",{})

@@ -30,7 +30,11 @@
                         <li class="nav-item"><a class="nav-link" href="{% url 'Deportes' %}">Deportes</a></li>
                         <li class="nav-item"><a class="nav-link" href="{% url 'Cursos' %}">Cursos</a></li>
                         <li class="nav-item"><a class="nav-link" href="{% url 'Profesores' %}">Profesores</a></li>
-                        <li class="nav-item"><a class="nav-link" href="{% url 'Contacto' %}">Contacto</a></li>
+                        {% if not user.is_staff %}
+                            <li class="nav-item"><a class="nav-link" href="{% url 'Contacto' %}">Contacto</a></li>
+                        {% else %}
+                            <li class="nav-item"><a class="nav-link" href="{% url 'Usuarios' %}">Usuarios</a></li>
+                        {% endif %}
                         {% if user.is_authenticated %}
                             <li class="nav-item"><p class="text-light my-2 mx-2"> <i class="bi bi-person-circle"></i> Hola, <b>{{user.username}}</b>!</p></li>
                             <li class="nav-item"><a class="btn btn-primary" href="{% url 'Salida' %}">Cerrar Sesión</a></li>

@@ -21,11 +21,14 @@ class NuevoCurso(forms.Form):
 
 class UserRegisterForm(UserCreationForm):
     
+    nombre = forms.CharField(label="Nombre:",required=False)
+    apellido = forms.CharField(label="Apellido:",required=False)
     email = forms.EmailField(label="Email")
     password1 = forms.CharField(label="Contraseña", widget=forms.PasswordInput) 
     password2 = forms.CharField(label="Confirmar contraseña", widget=forms.PasswordInput)
+    
     class Meta:
         model = User
-        fields = ['username', 'email', 'password1', 'password2']
+        fields = ['username','nombre','apellido', 'email', 'password1', 'password2']
 
-        help_texts = {k:"" for k in fields}
+        #help_texts = {k:"" for k in fields}
