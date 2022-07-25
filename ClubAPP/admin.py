@@ -28,5 +28,6 @@ admin.site.register(Curso, CursoAdmin)
 admin.site.register(Estudiante, EstudianteAdmin)
 admin.site.register(Profesor, ProfesorAdmin)
 admin.site.register(Deporte, DeporteAdmin)
+admin.site.register(Avatar)
 
 # admin, admin -> python manage.py createsuperuser

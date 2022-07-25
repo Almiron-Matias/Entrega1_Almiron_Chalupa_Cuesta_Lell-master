@@ -10,8 +10,9 @@ urlpatterns = [
     path('salida/', logout_req, name="Salida"),
     path('about_me/',about_me, name="About_me"),
     path('about_me_cursed/',about_me_cursed, name="About_me_cursed"),
-    path('perfil/<user_id>',perfil, name="Perfil"),
-    path('editar_perfil/<user_id>',editar_perfil, name="Editar_perfil"),
+    path('perfil/',perfil, name="Perfil"),
+    path('editar_perfil/',editar_perfil, name="Editar_perfil"),
+    path('agregar_avatar', agregar_avatar, name="Agregar_avatar"),
     
     # URLS Barra del Navegador
     path('profesores/', profesores, name="Profesores"),

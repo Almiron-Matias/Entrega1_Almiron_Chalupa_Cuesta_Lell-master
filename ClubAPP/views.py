@@ -62,15 +62,61 @@ def eliminardor(request,usuario_id):
     return redirect("Usuarios")
 
 @login_required
-def perfil(request,user_id):
+def perfil(request):
+    try:
+        avatar = Avatar.objects.get(usuario=request.user)
+        url = avatar.imagen.url
+    except:
+        url = "/media/generica.jpg"
     
-    perfil=User.objects.get(id=user_id)
-    return render(request,"perfil.html",{"Usuario":perfil}) 
+    perfil=request.user
+    return render(request,"perfil.html",{"Usuario":perfil,"url":url}) 
 
 @login_required
-def editar_perfil(request,user_id):
-    
-    return render(request,"perfil.html",{}) 
+def editar_perfil(request):
+    user = request.user 
+
+    if request.method == "POST":
+        
+        form = UserEditForm(request.POST) 
+
+        if form.is_valid():
+
+            info = form.cleaned_data
+            user.email = info["email"]
+            user.first_name = info["first_name"]
+            user.last_name = info["last_name"]
+
+            user.save()
+
+            return redirect("Perfil")
+
+    else:
+        form = UserEditForm(initial={"email":user.email, "first_name":user.first_name, "last_name":user.last_name})
+
+    return render(request,"editar_perfil.html",{"form":form})
+
+def agregar_avatar(request):
+        
+    if request.method == "POST":
+            
+        form = AvatarForm(request.POST, request.FILES)
+
+        if form.is_valid():
+
+            user = User.objects.get(username=request.user.username)
+
+            avatar = Avatar(usuario=user, imagen=form.cleaned_data["imagen"])
+
+            avatar.save()
+
+            return redirect("Perfil")
+
+    else:
+        form = AvatarForm()
+        
+    return render(request,"agregar_avatar.html",{"form":form})
+
 #LOGIN Y LOGOUT
 
 def login_req (request):

@@ -8,10 +8,11 @@ Perfil - Club La Escaloneta
 {% block contenidoPagina %}
 <body>
     <h2>Detalle del Perfil:</h2>
-    <p>INSERTAR FOTO</p>
+    <img src="{{url}}" class="img-thumbnail" alt="" style="height: 200px;">
+    <a href="{% url 'Agregar_avatar' %}">Cambiar Foto</a>
     <p>Nombre: {{user.first_name}}</p>
     <p>Apellido: {{user.last_name}}</p>
     <p>Email: {{user.email}}</p>
-    <a href="{% url 'Editar_perfil' user.id %}">Editar Perfil</a>
+    <a href="{% url 'Editar_perfil' %}">Editar Perfil</a>
 </body>
 {% endblock %}
