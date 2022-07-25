@@ -21,9 +21,6 @@ def inicio(request):
 
     return render(request,"index.html",{})
 
-def about_me(request):
-    return render(request,"about_me.html",{})
-
 def about_me_cursed(request):
     return render(request,"about_me_cursed.html",{})
 
@@ -71,7 +68,7 @@ def perfil(request):
     
     perfil=request.user
     return render(request,"perfil.html",{"Usuario":perfil,"url":url}) 
-
+    
 @login_required
 def editar_perfil(request):
     user = request.user 

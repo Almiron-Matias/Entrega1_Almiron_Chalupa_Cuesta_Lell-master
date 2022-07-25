@@ -8,11 +8,10 @@ urlpatterns = [
     path('entrada/', login_req, name="Entrada"), 
     path('registro/', register_req, name="Registro"),
     path('salida/', logout_req, name="Salida"),
-    path('about_me/',about_me, name="About_me"),
     path('about_me_cursed/',about_me_cursed, name="About_me_cursed"),
     path('perfil/',perfil, name="Perfil"),
     path('editar_perfil/',editar_perfil, name="Editar_perfil"),
-    path('agregar_avatar', agregar_avatar, name="Agregar_avatar"),
+    path('agregar_avatar/', agregar_avatar, name="Agregar_avatar"),
     
     # URLS Barra del Navegador
     path('profesores/', profesores, name="Profesores"),

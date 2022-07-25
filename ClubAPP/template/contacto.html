@@ -7,6 +7,43 @@ Contacto - Club La Escaloneta
 
 {% block contenidoPagina %}
 <body> 
+    <div class="container card text-white bg-secondary my-5 py-4 text-center">
+        <div class="card-body"><h2 class="text-white m-0">Nuestro Equipo de trabajo</h2></div>
+    </div>
+    <div class="album py-5 bg-light">
+        <div class="container">
+         <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+            <div class="col">
+              <div class="card shadow-sm">
+                <img class="bd-placeholder-img card-img-top" width="100%" height="225" aria-label="Placeholder: Thumbnail" focusable="false" src="{% static 'images/Matias Almiron.jpeg' %}">
+                  <span class="text-muted">Matias Almion-Jefe del Proyecto</span>
+                <div class="card-body">
+                  <p class="card-text">Soy Matias Sebastian Almiron, Jefe del Proyecto y estudiante de Coder House. Tengo 18 años, estudio electro-mecanica en una secundaria tecnica y me apasiona la programacion.</p>
+                </div>
+              </div>
+            </div>
+            <div class="col">
+              <div class="card shadow-sm">
+                <img class="bd-placeholder-img card-img-top" width="100%" height="225" aria-label="Placeholder: Thumbnail" focusable="false" src="{% static 'images/Mateo Chalupa.jpeg' %}">
+                  <span class="text-muted">Mateo Chalupa-Ayudante 1</span>
+                <div class="card-body">
+                  <p class="card-text">Mi nombre es Mateo Chalupa, Ayudante 1, soy estudiante de Coder House. Tengo 21 años, estudio ciencia de datos en la Unsam y me apaciona el deporte.
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="col">
+              <div class="card shadow-sm">
+                <img class="bd-placeholder-img card-img-top" width="100%" height="225" aria-label="Placeholder: Thumbnail" focusable="false" src="{% static 'images/Matias Cuesta_Lell.jpeg' %}">
+                  <span class="text-muted">Matias Cuesta Lell-Ayudante 2</span>
+                <div class="card-body">
+                  <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam odio similique tenetur laborum illum, molestiae doloremque ipsum dicta commodi, nulla accusamus illo velit atque, tempore optio repellendus rerum exercitationem officiis.</p>
+                </div>
+              </div>
+            </div>
+         </div>   
+        </div>
+    </div>
     <section class="bg-light py-5">
         <div class="container px-5">
             <div class="container card text-white bg-secondary my-5 py-4 text-center">
@@ -47,10 +84,7 @@ Contacto - Club La Escaloneta
                         </div>
                     </div>
                     <div class="d-none" id="submitErrorMessage"><div class="text-center text-danger mb-3">Error enviando el mensaje!</div></div>       
-                    <button  class="btn btn-primary mx-2">Enviar </button>
-                    
-
-                    
+                    <button  class="btn btn-primary mx-2">NO FUNCIONAL </button>                    
                 </form>
             </div>
         </div>
