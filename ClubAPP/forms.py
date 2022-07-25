@@ -21,19 +21,24 @@ class NuevoCurso(forms.Form):
 
 class UserRegisterForm(UserCreationForm):
     
-    nombre = forms.CharField(label="Nombre:",required=False)
-    apellido = forms.CharField(label="Apellido:",required=False)
+    first_name = forms.CharField(label="Nombre")
+    last_name = forms.CharField(label="Apellido")
     email = forms.EmailField(label="Email")
     password1 = forms.CharField(label="Contraseña", widget=forms.PasswordInput) 
     password2 = forms.CharField(label="Confirmar contraseña", widget=forms.PasswordInput)
     
     class Meta:
         model = User
-        fields = ['username','nombre','apellido', 'email', 'password1', 'password2']
+        fields = ['username','first_name','last_name', 'email', 'password1', 'password2']
 
-        #help_texts = {k:"" for k in fields}
+class UserEditForm(UserCreationForm):
 
-roles = [("estudiante", "Estudiante"), ("profesor", "Profesor")]
-class Selector(UserCreationForm):
+    first_name = forms.CharField(label="Nombre")
+    last_name = forms.CharField(label="Apellido")
+    email = forms.EmailField(label="Email")
+    password1 = forms.CharField(label="Contraseña", widget=forms.PasswordInput, required=False) # la contraseña no se vea
+    password2 = forms.CharField(label="Confirmar contraseña", widget=forms.PasswordInput, required=False)
 
-    roles = forms.MultipleChoiceField(choices=roles, label="Roles", widget=forms.Select(choices=roles))
+    class Meta:
+        model = User
+        fields = ['email','first_name', 'last_name', 'password1', 'password2']

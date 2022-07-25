@@ -36,7 +36,7 @@
                             <li class="nav-item"><a class="nav-link" href="{% url 'Usuarios' %}">Usuarios</a></li>
                         {% endif %}
                         {% if user.is_authenticated %}
-                            <li class="nav-item"><p class="text-light my-2 mx-2"> <i class="bi bi-person-circle"></i> Hola, <b>{{user.username}}</b>!</p></li>
+                            <li class="nav-item"><p class="text-light my-2 mx-2"> <i class="bi bi-person-circle"></i><a href="{% url 'Perfil' user.id %}">{{user.username}}</a></li>
                             <li class="nav-item"><a class="btn btn-primary" href="{% url 'Salida' %}">Cerrar Sesión</a></li>
                         {% else %}
                             <li class="nav-item"><a class="btn btn-primary mx-2" href="{% url 'Entrada' %}">Iniciar Sesión</a></li>
@@ -49,9 +49,21 @@
         {% block contenidoPagina %}
 
         {% endblock %}
-        
-        <footer class="py-5 bg-dark">
-            <div class="container px-4 px-lg-5"><p class="m-0 text-center text-white">Copyright &copy; Your Website 2022</p></div>
+        <footer class="py-5 bg-dark ">
+        <div class="container row gx-5 justify-content-center">
+            <div class="col-lg-10 table-responsive">
+                <table class="table table-theme">
+                    <td class="redes "> 
+                        <tr><a href="https://es-la.facebook.com" target="blank"><img src = {% static 'images/facebook.png' %} width ="30" height="30"></a>
+                        <tr><a href="https://ar.linkedin.com" target="blank"><img src = {% static 'images/linkedin.png' %} width ="30" height="30"></a>
+                        <tr><a href="https://mail.google.com" target="blank"><img src = {% static 'images/mail.png' %} width ="30" height="30"></a>
+                        <tr><a href="https://www.instagram.com" target="blank"><img src = {% static 'images/insta.png' %} width ="30" height="30"></a>
+                        <tr><a href="https://twitter.com" target="blank"><img src = {% static 'images/tw.png' %} width ="30" height="30"></a>
+                    </td>
+                </table>
+            </div>
+        </div>
+        <div class="container px-4 px-lg-5"><p class="m-0 text-center text-white">Copyright &copy; Your Website 2022</p></div>
         </footer>
         <!-- Bootstrap core JS-->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>

@@ -32,8 +32,9 @@ Deportes - Club La Escaloneta
             <table class="table table-theme">
                 <thead>
                     <tr>
-                        <th scope="col">#</th>
+                        <th scope="col">Username</th>
                         <th scope="col">Nombre</th>
+                        <th scope="col">Apellido</th>
                         <th scope="col">Email</th>
                         <th scope="col">Tipo</th>
                         <th scope="col">Acciones</th>
@@ -42,13 +43,14 @@ Deportes - Club La Escaloneta
                 <tbody>
                     {% for usuario in usuarios %}
                         <tr>
-                            <th scope="row">{{forloop.counter}}</th>
-                            <td>{{usuario.username}}</td>
+                            <th>{{usuario.username}}</th>
+                            <td>{{usuario.first_name}}</td>
+                            <td>{{usuario.last_name}}</td>
                             <td>{{usuario.email}}</td>
                             <td>{{usuario.tipo}}</td>
                             <td>
                                 <a href="{% url 'Selector' %}" class="text-primary badge badge-primary text-decoration-none"> <i class="bi bi-pencil-square"></i> Editar</a>
-                                <a href="{% url 'Eliminador' %}" class="text-danger badge badge-danger text-decoration-none"> <i class="bi bi-x-square"></i> Eliminar</a>
+                                <a href="{% url 'Eliminador' usuario.id %}" class="text-danger badge badge-danger text-decoration-none"> <i class="bi bi-x-square"></i> Eliminar</a>
                             </td>
                         </tr>
                     {% endfor %}

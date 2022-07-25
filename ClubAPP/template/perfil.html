@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block tituloPagina %}
+Perfil - Club La Escaloneta
+{% endblock %}
+
+{% block contenidoPagina %}
+<body>
+    <h2>Detalle del Perfil:</h2>
+    <p>INSERTAR FOTO</p>
+    <p>Nombre: {{user.first_name}}</p>
+    <p>Apellido: {{user.last_name}}</p>
+    <p>Email: {{user.email}}</p>
+    <a href="{% url 'Editar_perfil' user.id %}">Editar Perfil</a>
+</body>
+{% endblock %}
