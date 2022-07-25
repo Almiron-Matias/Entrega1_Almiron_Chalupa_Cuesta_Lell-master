@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block tituloPagina %}
+Acerca de Nosotros - Club La Escaloneta
+{% endblock %}
+
+{% block contenidoPagina %}
+<div class="container card text-white bg-secondary my-5 py-4 text-center">
+    <div class="card-body"><h2 class="text-white m-0">Nuestro Equipo de trabajo</h2></div>
+</div>
+<div class="album py-5 bg-light">
+    <div class="container">
+     <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+        <div class="col">
+          <div class="card shadow-sm">
+            <img class="bd-placeholder-img card-img-top" width="100%" height="225" aria-label="Placeholder: Thumbnail" focusable="false" src="">
+              <span class="text-muted">Matias Almion-Jefe del Proyecto</span>
+            <div class="card-body">
+              <p class="card-text">Matias Almiron tambien conocido como dios de la forga y del fuego.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card shadow-sm">
+            <img class="bd-placeholder-img card-img-top" width="100%" height="225" aria-label="Placeholder: Thumbnail" focusable="false" src="">
+              <span class="text-muted">Mateo Chalupa-Ayudante 1</span>
+            <div class="card-body">
+              <p class="card-text">Mateo Chalupa intento sacar una foto tipica pero andaba re doblado, pero la felicidad no se la quita nadie.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card shadow-sm">
+            <img class="bd-placeholder-img card-img-top" width="100%" height="225" aria-label="Placeholder: Thumbnail" focusable="false" src="">
+              <span class="text-muted">Matias Cuesta Lell-Ayudante 2</span>
+            <div class="card-body">
+              <p class="card-text">Matias Cuesta Lell te mira el alma y te la juzga.</p>
+            </div>
+          </div>
+        </div>
+     </div>   
+    </div>
+</div>
+{% endblock %}

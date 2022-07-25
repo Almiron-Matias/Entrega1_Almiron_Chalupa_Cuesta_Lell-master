@@ -19,6 +19,12 @@ def inicio(request):
 
     return render(request,"index.html",{})
 
+def about_me(request):
+    return render(request,"about_me.html",{})
+
+def about_me_cursed(request):
+    return render(request,"about_me_cursed.html",{})
+
 #PROFESORES Y ESTUDIANTES
 
 def profesores(request):
@@ -34,7 +40,7 @@ def usuarios(request):
         search = request.POST["search"]
 
         if search != "":
-            usuarios  = User.objects.filter( Q(nombre__icontains=search) | Q(apellido__icontains=search) | Q(email__icontains=search) | Q(tipo__icontains=search) ).values()
+            usuarios  = User.objects.filter( (Q(username__icontains=search) ) | Q(email__icontains=search) | Q(tipo__icontains=search) ).values()
 
             return render(request,"usuarios.html",{"usuarios":usuarios , "search":True, "busqueda":search})
     
@@ -43,10 +49,10 @@ def usuarios(request):
     return render(request,"usuarios.html",{"usuarios":usuarios})
 
 def selector(request):
-   return render(request,"selector.html")  
+   return render(request,"selector.html",{})  
 
 def eliminardor(request):
-    return render(request,"eliminador.html")   
+    return render(request,"eliminador.html",{})   
  
 #LOGIN Y LOGOUT
 
@@ -113,9 +119,11 @@ def calendario(request):
 def contacto(request):
     return render(request,"contacto.html",{})
 
+@login_required
 def membresias(request):
     return render(request,"membresia.html",{})
 
+@login_required
 def inscripcion(request):
     return render(request,"inscripcion.html",{})
 
