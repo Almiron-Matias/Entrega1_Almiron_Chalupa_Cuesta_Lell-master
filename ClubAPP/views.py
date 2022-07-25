@@ -3,10 +3,12 @@ from django.http import HttpResponse
 from .models import *
 from .forms import *
 from django.db.models import Q
-from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
+from django.contrib.auth.forms import AuthenticationForm
+from django.views.generic.detail import DetailView
 from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.decorators import login_required
 from django.contrib.admin.views.decorators import staff_member_required
+from django.contrib.auth.models import User
 
 # Create your views here.
 
@@ -33,6 +35,7 @@ def profesores(request):
 def estudiantes(request):
     return HttpResponse("Vista de estudiantes")
 
+@staff_member_required
 def usuarios(request):
     
     if request.method == "POST":
@@ -51,9 +54,23 @@ def usuarios(request):
 def selector(request):
    return render(request,"selector.html",{})  
 
-def eliminardor(request):
-    return render(request,"eliminador.html",{})   
- 
+@staff_member_required
+def eliminardor(request,usuario_id):
+    usuario = User.objects.get(id=usuario_id)
+    usuario.delete()
+
+    return redirect("Usuarios")
+
+@login_required
+def perfil(request,user_id):
+    
+    perfil=User.objects.get(id=user_id)
+    return render(request,"perfil.html",{"Usuario":perfil}) 
+
+@login_required
+def editar_perfil(request,user_id):
+    
+    return render(request,"perfil.html",{}) 
 #LOGIN Y LOGOUT
 
 def login_req (request):

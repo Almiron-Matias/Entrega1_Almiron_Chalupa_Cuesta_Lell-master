@@ -10,6 +10,8 @@ urlpatterns = [
     path('salida/', logout_req, name="Salida"),
     path('about_me/',about_me, name="About_me"),
     path('about_me_cursed/',about_me_cursed, name="About_me_cursed"),
+    path('perfil/<user_id>',perfil, name="Perfil"),
+    path('editar_perfil/<user_id>',editar_perfil, name="Editar_perfil"),
     
     # URLS Barra del Navegador
     path('profesores/', profesores, name="Profesores"),
@@ -18,7 +20,7 @@ urlpatterns = [
     path('inscripcion/',inscripcion, name="Inscripcion"),
     path('usuarios/',usuarios, name="Usuarios"),
     path('selector/',selector,name="Selector"),
-    path('eliminador/',eliminardor,name="Eliminador"),
+    path('eliminador/<usuario_id>',eliminardor,name="Eliminador"),
     
     # URLS Secundarias
     path('membresias/', membresias, name="Membresias"),
